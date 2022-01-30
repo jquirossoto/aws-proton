@@ -1,0 +1,24 @@
+{
+  "name": "aws-proton",
+  "version": "1.0.0",
+  "description": "WIP",
+  "main": "index.js",
+  "scripts": {
+    "service:iam:role:create": "aws iam create-role --role-name AWSProtonServiceRole --assume-role-policy-document file://./iam/service-role-trust-policy.json",
+    "service:iam:policy:create": "aws iam create-policy --policy-name AWSProtonServiceRolePolicy --policy-document file://./iam/service-role-policy.json",
+    "service:iam:policy:attach": "aws iam attach-role-policy --role-name AWSProtonServiceRole --policy-arn",
+    "pipeline:iam:role:create": "aws iam create-role --role-name AWSProtonPipelineRole --assume-role-policy-document file://./iam/pipeline-role-trust-policy.json",
+    "pipeline:iam:policy:create": "aws iam create-policy --policy-name AWSProtonPipelineRolePolicy --policy-document file://./iam/pipeline-role-policy.json",
+    "pipeline:iam:policy:attach": "aws iam attach-role-policy --role-name AWSProtonPipelineRole --policy-arn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jquirossoto/aws-proton.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jquirossoto/aws-proton/issues"
+  },
+  "homepage": "https://github.com/jquirossoto/aws-proton#readme"
+}

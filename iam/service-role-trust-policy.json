@@ -1,0 +1,19 @@
+{
+    "Version": "2012-10-17",
+    "Statement": {
+        "Sid": "ServiceTrustRelationshipWithConfusedDeputyPrevention",
+        "Effect": "Allow",
+        "Principal": {
+            "Service": "proton.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole",
+        "Condition": {
+            "StringEquals": {
+                "aws:SourceAccount": "186521841143"
+            },
+            "ArnLike": {
+                "aws:SourceArn": "arn:aws::proton:*:186521841143:environment/*"
+            }
+        }
+    }
+}
