@@ -15,7 +15,7 @@ Mappings:
     PrivateSubnet1:
       CIDR: {{ environment.inputs.private_subnet1_cidr }}
     PrivateSubnet2:
-      CIDR: {{ environment.inputs.private_subnet1_cidr }}
+      CIDR: {{ environment.inputs.private_subnet2_cidr }}
 
 ################################### STACK RESOURCES ###################################
 
