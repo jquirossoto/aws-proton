@@ -1,0 +1,23 @@
+Resources:
+
+  ECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+       # This policy allows environment accounts to get the image from ECRRepository in the management account
+      RepositoryPolicyText:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowPull
+            Effect: Allow
+            Principal:
+              AWS:
+                - arn:aws:iam::{{ service_instance.environment.account_id }}:root
+            Action:
+              - ecr:GetAuthorizationToken
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+      ImageScanningConfiguration:
+        ScanOnPush: true
+      ImageTagMutability: MUTABLE
+      RepositoryName: !FindInMap [ NameConfig, ECRRepository, Name ]

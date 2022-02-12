@@ -32,7 +32,7 @@ Resources:
       EnableDnsSupport: true
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC
+          Value: {{ environment.name | lower }}-vpc
 
   ################################### INTERNET GATEWAY ###################################
 
@@ -41,7 +41,7 @@ Resources:
     Properties:
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-IG
+          Value: {{ environment.name | lower }}-vpc-ig
     
   InternetGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -57,7 +57,7 @@ Resources:
       VpcId: !Ref VPC
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PubRT
+          Value: {{ environment.name | lower }}-vpc-pub-rt
 
   DefaultPublicRoute:
     DependsOn:
@@ -80,7 +80,7 @@ Resources:
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PubSN1
+          Value: {{ environment.name | lower }}-vpc-pub-sn1
       VpcId: !Ref VPC
 
   PublicSubnet1RouteTableAssociation:
@@ -95,7 +95,7 @@ Resources:
       Domain: vpc
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PubSN1-NG-EIP
+          Value: {{ environment.name | lower }}-vpc-pub-sn1-ng-eip
       
   PublicSubnet1NatGateway:
     Type: AWS::EC2::NatGateway
@@ -104,7 +104,7 @@ Resources:
       SubnetId: !Ref PublicSubnet1
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PubSN1-NG
+          Value: {{ environment.name | lower }}-vpc-pub-sn1-ng
 
   ################################### SUBNET2 ###################################
 
@@ -116,7 +116,7 @@ Resources:
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PubSN2
+          Value: {{ environment.name | lower }}-vpc-pub-sn2
       VpcId: !Ref VPC
 
   PublicSubnet2RouteTableAssociation:
@@ -131,7 +131,7 @@ Resources:
       Domain: vpc
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PubSN2-NG-EIP
+          Value: {{ environment.name | lower }}-vpc-pub-sn2-ng-eip
       
   PublicSubnet2NatGateway:
     Type: AWS::EC2::NatGateway
@@ -140,7 +140,7 @@ Resources:
       SubnetId: !Ref PublicSubnet2
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PubSN2-NG
+          Value: {{ environment.name | lower }}-vpc-pub-sn2-ng
 
   ################################### PRIVATE SUBNETS ###################################
 
@@ -153,7 +153,7 @@ Resources:
       CidrBlock: !FindInMap [ SubnetConfig, PrivateSubnet1, CIDR ]
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PrivSN1
+          Value: {{ environment.name | lower }}-vpc-priv-sn1
       VpcId:
         Ref: VPC
 
@@ -163,7 +163,7 @@ Resources:
       VpcId: !Ref VPC
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PrivSN1-RT
+          Value: {{ environment.name | lower }}-vpc-priv-sn1-rt
 
   PrivateSubnet1RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -187,7 +187,7 @@ Resources:
       CidrBlock: !FindInMap [ SubnetConfig, PrivateSubnet2, CIDR ]
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PrivSN2
+          Value: {{ environment.name | lower }}-vpc-priv-sn2
       VpcId:
         Ref: VPC
 
@@ -197,7 +197,7 @@ Resources:
       VpcId: !Ref VPC
       Tags:
         - Key: Name
-          Value: {{ environment.name }}-VPC-PrivSN2-RT
+          Value: {{ environment.name | lower }}-vpc-priv-sn2-rt
 
   PrivateSubnet2RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
